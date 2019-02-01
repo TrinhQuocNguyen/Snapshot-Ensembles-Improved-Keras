@@ -17,6 +17,16 @@ This scheduler provides a learning rate which is similar to the below image. I h
 Note that the learning rate never actually becomes 0, it just gets very close to it (~0.0005): <br>
 <img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/impoved_snapshot.png?raw=true' width=75% height=75%>
 
+For example:
+- T = 350
+- M = 3
+- t = 55
+- parts = 2^0 + 2^1 + 2^2 = 7
+- unit = mod (350, 7) = 50
+- step = 1, because: 2^0 < 55/50 ≤ 2^0 + 2^1
+- space = 50* 2^1 = 100
+- current = 55 - 50*(2^0) = 5
+
 Compare to: <br>
 <img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/cosine%20annealing%20schedule.JPG?raw=true' width=50%>
 <br>
