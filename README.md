@@ -10,17 +10,17 @@ Implementation of the paper [Snapshot Ensembles: Train 1, Get M for Free](http:/
 Snapshot Ensemble is a method to obtain multiple neural network which can be ensembled at no additional training cost. This is achieved by letting a single neural network converge into several local minima along its optimization path and save the model parameters at certain epochs, therefore the weights being "snapshots" of the model. 
 
 The repeated rapid convergence is realized using cosine annealing cycles as the learning rate schedule. It can be described by:<br>
-<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles/blob/master/images/formula_02.png?raw=true' width=50%>
+<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/formula_02.png?raw=true' width=50%>
 
 
 This scheduler provides a learning rate which is similar to the below image. I have modified to make another learning rate schedule.
 Note that the learning rate never actually becomes 0, it just gets very close to it (~0.0005): <br>
-<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles/blob/master/images/impoved_snapshot.png?raw=true' width=75% height=75%>
+<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/impoved_snapshot.png?raw=true' width=75% height=75%>
 
 Compare to: <br>
-<img src='https://github.com/titu1994/Snapshot-Ensembles/blob/master/images/cosine%20annealing%20schedule.JPG?raw=true' width=50%>
+<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/cosine%20annealing%20schedule.JPG?raw=true' width=50%>
 <br>
-<img src='https://github.com/titu1994/Snapshot-Ensembles/blob/master/images/cosing%20wave.png?raw=true' width=75% height=75%>
+<img src='https://github.com/TrinhQuocNguyen/Snapshot-Ensembles-Improved-Keras/blob/master/images/cosing%20wave.png?raw=true' width=75% height=75%>
 
 The theory behind using a learning rate schedule which occilates between such extreme values (0.1 to 5e-4, M times) is that there exist multiple local minima when training a model. Constantly reducing the local learning rate can force the model to be stuck at a less than optimal local minima. Therefore, to escape, we use a very large learning rate to escape the current local minima and attempt to find another possibly better local minima.
 
